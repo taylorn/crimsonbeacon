@@ -21,4 +21,5 @@ urlpatterns = patterns('',
      {'document_root': settings.MEDIA_ROOT}),
                        
     url(r'^articles/$', ArticleListView.as_view(), name='article_list'),
+    url(r'^surveys/', include('apps.survey.urls'))
 )
