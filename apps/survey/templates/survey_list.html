@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Survey Reports | Crimson Beacon{% endblock %}
+
+{% block content %}
+
+<p class='title'>Survey Listing</p>
+{% for survey in survey_list %}
+	<p class='text'>{{ survey.title }}</p>
+	<br /><br />
+{% empty %}
+	<p class='text'>No surveys available.</p>
+{% endfor %}
+<p>&nbsp;</p>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+<p class='title'>Recent:</p>
+{% for survey in survey_list_recent %}
+	<p class='sidetext'>{{ survey.title }}</p>
+	<br /><br />
+{% empty %}
+	<p class='sidetext'>Nothing recent.</p>
+{% endfor %}
+<p>&nbsp;</p>
+
+<!-- Temporary placeholder for additional menu items 
+<p class='sidetitle'>Videos<br /><br />
+Papers</p> -->
+
+</td>
+
+{% endblock %}
