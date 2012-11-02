@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Survey Reports | Crimson Beacon{% endblock %}
+
+{% block content %}
+
+<p class='title'>Survey Listing</p>
+{% for survey in survey_list %}
+	<a href={{ survey.get_absolute_url }}>{{ survey.title }}</a>
+	<br /><br />
+{% empty %}
+	<p class='text'>No surveys available.</p>
+{% endfor %}
+<p>&nbsp;</p>
+
+{% endblock %}
+
