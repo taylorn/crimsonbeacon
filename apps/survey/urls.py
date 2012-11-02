@@ -1,8 +1,8 @@
 from apps.survey.views import SurveyListView, SurveyDetailView, SurveyCreateView
 from django.conf.urls import patterns, include, url
 
-urlpatterns = patterns('',                
-#    url(r'^(?P<urltag>[a-z0-9_-]{3,33})$', SurveyDetailView.as_view(name=urltag), name='survey_detail')
-    url(r'^$', SurveyListView.as_view(), name='survey_list'),
-    url(r'^create$', SurveyCreateView.as_view(), name='survey_create'),
+urlpatterns = patterns('',   
+    url(r'^create$', SurveyCreateView.as_view(), name='survey_create'),     
+    url(r'^$', SurveyListView.as_view(), name='survey_list'),        
+    url(r'^(?P<title>[a-z0-9_-]{1,50})$', SurveyDetailView.as_view(), name='survey_detail'),
 )

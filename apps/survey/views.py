@@ -7,12 +7,11 @@ from django.core.urlresolvers import reverse_lazy
 
 class SurveyDetailView(DetailView):
     
-    template_name_suffix = '_detail'
+    template_name_suffix = '_detail.html'
     model = Survey
     
     def get_context_data(self, **kwargs):
         context = super(SurveyDetailView, self).get_context_data(**kwargs)
-        print context, '--context'
         return context
     
 #    def get_queryset(self):
@@ -20,10 +19,9 @@ class SurveyDetailView(DetailView):
 #        print results, '==queryset'
 #        return results
 #    
-#    def get_object(self):
-#        survey = super(SurveyDetailView, self).get_object()
-#        print survey, '--survey'
-#        return survey
+    def get_object(self):
+        survey = self.get_queryset().get(title=self.kwargs['title'])
+        return survey
         
 class SurveyListView(ListView):
     
@@ -32,7 +30,7 @@ class SurveyListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(SurveyListView, self).get_context_data(**kwargs)
-        context['sidebar_on']=True
+        context['sidebar_on']=False
         return context
     
     def get_queryset(self, *args, **kwargs):
