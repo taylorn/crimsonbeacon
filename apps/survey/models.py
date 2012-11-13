@@ -10,4 +10,4 @@ class Survey(models.Model):
     body = models.TextField(blank=True)
     
     def get_absolute_url(self):
-        return reverse('survey_list', kwargs={'title': self.title })
+        return reverse('survey_detail', kwargs={'title': self.title.replace(' ', '-') })

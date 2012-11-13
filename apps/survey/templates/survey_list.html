@@ -6,8 +6,9 @@
 
 <p class='title'>Survey Listing</p>
 {% for survey in survey_list %}
+	<p class='text'>
 	<a href={{ survey.get_absolute_url }}>{{ survey.title }}</a>
-	<br /><br />
+	</p>
 {% empty %}
 	<p class='text'>No surveys available.</p>
 {% endfor %}

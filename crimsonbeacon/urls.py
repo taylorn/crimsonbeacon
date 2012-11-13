@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls import patterns, include, url
 from crimsonbeacon import settings
 
@@ -30,3 +31,5 @@ urlpatterns += patterns('django.contrib.flatpages.views',
     url(r'^contributor/$', 'flatpage', {'url': '/about/'}, name='contributor'),
     url(r'^contact/$', 'flatpage', {'url': '/about/'}, name='contact'),
 )
+
+urlpatterns += staticfiles_urlpatterns()
