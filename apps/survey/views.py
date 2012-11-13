@@ -23,10 +23,12 @@ class SurveyListView(ListView):
     
     template_name = 'survey/templates/survey_list.html'
     model = Survey
-    
+            
     def get_context_data(self, **kwargs):
         context = super(SurveyListView, self).get_context_data(**kwargs)
         context['sidebar_on']=True
+        if self.request.user.is_staff:
+            context['user_is_staff'] = True
         return context
 
 class SurveyCreateView(CreateView):
@@ -38,7 +40,7 @@ class SurveyCreateView(CreateView):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_staff:
             return super(SurveyCreateView, self).dispatch(request, *args, **kwargs)
-        return HttpResponseRedirect(re/vervweftest-survey-4/delete/verse_lazy('survey_list'))
+        return HttpResponseRedirect(reverse_lazy('survey_list'))
     
 class SurveyUpdateView(UpdateView):
     

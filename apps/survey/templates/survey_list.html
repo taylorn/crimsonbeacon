@@ -4,15 +4,48 @@
 
 {% block content %}
 
-<p class='title'>Survey Listing</p>
-{% for survey in survey_list %}
-	<p class='text'>
-	<a href={{ survey.get_absolute_url }}>{{ survey.title }}</a>
-	</p>
-{% empty %}
-	<p class='text'>No surveys available.</p>
-{% endfor %}
-<p>&nbsp;</p>
+<p class='title'>
+	Survey Listing
+	{% if user_is_staff %}
+		&nbsp;|&nbsp;<a href="{% url survey_create %}">Publish New</a>
+	{% endif %}
+</p>
+<table cellpadding='0' cellspacing='0' border='0'>
+	{% for survey in survey_list %}
+		{% if survey.has_embedded_link %}
+			<tr onclick="appendFramedPage('{{ survey.title }}', '{{ survey.get_referenced_page }}')">
+			{% if user_is_staff %}
+				<td width="699">
+			{% else %}
+				<td width="799">
+			{% endif %}
+				<p class="cblink">{{ survey.title }}</p>
+				</td>
+		{% else %}
+			<tr>
+			{% if user_is_staff %}
+				<td width="699">
+			{% else %}
+				<td width="799">
+			{% endif %}
+				<p class="cblink">
+					<a href="{{ survey.get_referenced_page }}">{{ survey.title }}</a>
+				</p>
+				</td>
+		{% endif %}	
+		{% if user_is_staff %}
+			<td width="100">
+				<p class="cblink">
+					<a href="{{ survey.get_update_url }}">Update</a>
+				</p>
+			</td>
+		{% endif %}
+		</tr>
+		<tr id="{{ survey.title }}"></tr>
+	{% empty %}
+		<p class='text'>No surveys available.</p>
+	{% endfor %}
+</table>
 
 {% endblock %}
 

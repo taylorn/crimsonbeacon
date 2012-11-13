@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Survey{% endblock %}
+
+{% block content %}
+<p class='title'>Delete Survey | Admin Interface</p>
+<form action="." method="post">{% csrf_token %}
+	<p class='title'>
+    <input type="submit" value="Delete">
+    </p>
+</form>
+<p class='title'>{{ object.title }}</p>
+<p class='title'>{{ object.subtitle }}</p>
+<p class='text'>{{ object.body }}</p>
+{% endblock %}
