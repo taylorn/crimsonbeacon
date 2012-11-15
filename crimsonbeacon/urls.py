@@ -20,12 +20,12 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': settings.MEDIA_ROOT}),
                        
-    url(r'^$', 'crimsonbeacon.views.index'),
+    url(r'^$', 'crimsonbeacon.views.index', name='index'),
     url(r'^articles/', include('apps.article.urls')),
     url(r'^survey-reports/', include('apps.survey.urls')),
     url(r'^case-studies/', include('apps.case.urls')),
     url(r'^%s/$' % settings.ADMIN_PANEL_URL, 'crimsonbeacon.views.admin_panel_view'),
-    url(r'^admin-login/$', 'crimsonbeacon.views.login'),
+    url(r'^admin-login/$', 'crimsonbeacon.views.login_view', name='admin_login'),
 
 )
 
