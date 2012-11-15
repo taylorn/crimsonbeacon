@@ -1,9 +1,9 @@
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf.urls import patterns, include, url
 from crimsonbeacon import settings
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -20,16 +20,21 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': settings.MEDIA_ROOT}),
                        
+    url(r'^$', 'crimsonbeacon.views.index'),
     url(r'^articles/', include('apps.article.urls')),
     url(r'^survey-reports/', include('apps.survey.urls')),
     url(r'^case-studies/', include('apps.case.urls')),
+    url(r'^%s/$' % settings.ADMIN_PANEL_URL, 'crimsonbeacon.views.admin_panel_view'),
+    url(r'^admin-login/$', 'crimsonbeacon.views.login'),
 
 )
 
 urlpatterns += patterns('django.contrib.flatpages.views',
+    
+    
     url(r'^about/$', 'flatpage', {'url': '/about/'}, name='about'),
-    url(r'^contributor/$', 'flatpage', {'url': '/about/'}, name='contributor'),
-    url(r'^contact/$', 'flatpage', {'url': '/about/'}, name='contact'),
+    url(r'^contributor/$', 'flatpage', {'url': '/contributor/'}, name='contributor'),
+    url(r'^contact/$', 'flatpage', {'url': '/contact/'}, name='contact'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

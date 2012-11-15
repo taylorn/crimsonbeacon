@@ -20,7 +20,7 @@ class Survey(models.Model):
                                            default='embedded')
     
     def get_absolute_url(self):
-        return reverse('survey_detail', kwargs={'title': self.title })
+        return reverse('survey_detail', kwargs={'title': self.title.replace(' ', '-') })
     
     def get_referenced_page(self):
         if self.link_display_method in ('embedded', 'external'):
@@ -29,7 +29,10 @@ class Survey(models.Model):
             return self.get_absolute_url()
     
     def get_update_url(self):
-        return reverse('survey_update', kwargs={'title': self.title })
+        return reverse('survey_update', kwargs={'title': self.title.replace(' ', '-') })
+    
+    def get_delete_url(self):
+        return reverse('survey_delete', kwargs={'title': self.title.replace(' ', '-') })
     
     def has_embedded_link(self):
         return self.link_display_method == 'embedded'

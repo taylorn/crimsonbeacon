@@ -1,6 +1,14 @@
 <!--
 function appendFramedPage(id, link) {
 	node = document.getElementById(id);
-	node.innerHTML += '<p>&nbsp;</p><iframe src="' + link + '" border="0" frameborder="0" align="center" width="780" height="1000"></iframe><p>&nbsp;</p>';
+	if (node.frameIsOpen) {
+		node.frameIsOpen=false; node.innerHTML='';
+	} else {
+		node.frameIsOpen=true;
+		node.innerHTML='<td width="799">' +
+		'<iframe src="' + link +
+		'" name="cbframe"></iframe><p>&nbsp;</p>' +
+		'</td>';
+	}
 }
 //-->

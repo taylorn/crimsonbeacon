@@ -34,14 +34,24 @@
 				</td>
 		{% endif %}	
 		{% if user_is_staff %}
-			<td width="100">
+			<td width="50">
 				<p class="cblink">
 					<a href="{{ survey.get_update_url }}">Update</a>
 				</p>
 			</td>
+			<td width="50">
+				<p class="cblink">
+					<a href="{{ survey.get_delete_url }}">Delete</a>
+				</p>
+			</td>
 		{% endif %}
 		</tr>
-		<tr id="{{ survey.title }}"></tr>
+		<tr id="{{ survey.title }}">
+			{% if survey.has_embedded_link %}
+			{% else %}
+				<td width="799"></td>
+			{% endif %}
+		</tr>
 	{% empty %}
 		<p class='text'>No surveys available.</p>
 	{% endfor %}
