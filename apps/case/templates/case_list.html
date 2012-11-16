@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Survey Reports | Crimson Beacon{% endblock %}
+{% block title %}Case Reports | Crimson Beacon{% endblock %}
 
 {% block content %}
 
 <p class='title'>
-	Survey Listing
+	Case Listing
 	{% if user_is_staff %}
-		&nbsp;|&nbsp;<a href="{% url survey_create %}">Publish New</a>
+		&nbsp;|&nbsp;<a href="{% url case_create %}">Publish New</a>
 	{% endif %}
 </p>
 <table cellpadding='0' cellspacing='0' border='0'>
-	{% for survey in survey_list %}
-		{% if survey.has_embedded_link %}
+	{% for case in case_list %}
+		{% if case.has_embedded_link %}
 			<tr>
 			{% if user_is_staff %}
 				<td width="699">
 			{% else %}
 				<td width="799">
 			{% endif %}
-				<p class="cblink" onclick="appendFramedPage('{{ survey.title }}', '{{ survey.get_referenced_page }}')">
-					{{ survey.title }}</p>
+				<p class="cblink" onclick="appendFramedPage('{{ case.title }}', '{{ case.get_referenced_page }}')">
+					{{ case.title }}</p>
 				</td>
 		{% else %}
 			<tr>
@@ -30,31 +30,31 @@
 				<td width="799">
 			{% endif %}
 				<p class="cblink">
-					<a href="{{ survey.get_referenced_page }}">{{ survey.title }}</a>
+					<a href="{{ case.get_referenced_page }}">{{ case.title }}</a>
 				</p>
 				</td>
 		{% endif %}	
 		{% if user_is_staff %}
 			<td width="50">
 				<p class="cblink">
-					<a href="{{ survey.get_update_url }}">Update</a>
+					<a href="{{ case.get_update_url }}">Update</a>
 				</p>
 			</td>
 			<td width="50">
 				<p class="cblink">
-					<a href="{{ survey.get_delete_url }}">Delete</a>
+					<a href="{{ case.get_delete_url }}">Delete</a>
 				</p>
 			</td>
 		{% endif %}
 		</tr>
-		<tr id="{{ survey.title }}">
-			{% if survey.has_embedded_link %}
+		<tr id="{{ case.title }}">
+			{% if case.has_embedded_link %}
 			{% else %}
-				<td width="799">&nbsp;<td>
+				<td width="799"></td>
 			{% endif %}
 		</tr>
 	{% empty %}
-		<p class='text'>No surveys available.</p>
+		<p class='text'>No cases available.</p>
 	{% endfor %}
 </table>
 
