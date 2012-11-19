@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Case{% endblock %}
+
+{% block content %}
+<p class='title'>Delete Case | Admin Interface</p>
+<form action="." method="post">{% csrf_token %}
+	<p class='title'>
+    <input type="submit" value="Confirm Delete">
+    </p>
+</form>
+<p class='title'>{{ object.title }}</p>
+<p class='title'>{{ object.subtitle }}</p>
+<p class='text'>{{ object.body }}</p>
+{% endblock %}

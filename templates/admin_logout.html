@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Crimson Beacon{% endblock %}
+
+{% block content %}
+
+<form action="/admin-login/" method="post">{% csrf_token %}
+	<p class="title">
+		<input type="submit" value="logout" autofocus="True"/>
+	</p>
+</form>
+
+{% endblock %}
+

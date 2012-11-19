@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Publish Case{% endblock %}
+
+{% block content %}
+<p class='title'>Publish Case | Admin Interface</p>
+<form action="." method="post">{% csrf_token %}
+	<table cellpadding='0' cellspacing='0' border='0'>
+		<tr>
+			<td width='20'><p class='text'>Title *:</p>
+			<td width='980'><p class='text'>{{ form.title }}</p></td>
+		</tr>
+		<tr>
+			<td width='20'><p class='text'>Subtitle:</p>
+			<td width='980'><p class='text'>{{ form.subtitle }}</p></td>
+		</tr>
+		<tr>
+			<td width='20'><p class='text'>Hyperlink:</p></td>
+			<td width='980'><p class='text'>{{ form.link }}</p></td>
+		</tr>
+		<tr>
+			<td width='20'><p class='text'>Display link as:</p></td>
+			<td width='980'><p class='text'>{{ form.link_display_method }}</p></td>
+		</tr>
+		<tr>
+			<td width='20'><p class='text'>Body:</p>
+			<td width='980'><p class='text'>{{ form.body }}</p></td>
+		</tr>
+		<tr>
+			<td width='1000'><p class='title'>
+    			<input type="submit" value="Submit" />
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

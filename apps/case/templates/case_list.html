@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Case Reports | Crimson Beacon{% endblock %}
+
+{% block content %}
+
+<p class='title'>
+	Case Listing
+	{% if user_is_staff %}
+		&nbsp;|&nbsp;<a href="{% url case_create %}">Publish New</a>
+	{% endif %}
+</p>
+<table cellpadding='0' cellspacing='0' border='0'>
+	{% for case in case_list %}
+		{% if case.has_embedded_link %}
+			<tr>
+			{% if user_is_staff %}
+				<td width="699">
+			{% else %}
+				<td width="799">
+			{% endif %}
+				<p class="cblink" onclick="appendFramedPage('{{ case.title }}', '{{ case.get_referenced_page }}')">
+					{{ case.title }}</p>
+				</td>
+		{% else %}
+			<tr>
+			{% if user_is_staff %}
+				<td width="699">
+			{% else %}
+				<td width="799">
+			{% endif %}
+				<p class="cblink">
+					<a href="{{ case.get_referenced_page }}">{{ case.title }}</a>
+				</p>
+				</td>
+		{% endif %}	
+		{% if user_is_staff %}
+			<td width="50">
+				<p class="cblink">
+					<a href="{{ case.get_update_url }}">Update</a>
+				</p>
+			</td>
+			<td width="50">
+				<p class="cblink">
+					<a href="{{ case.get_delete_url }}">Delete</a>
+				</p>
+			</td>
+		{% endif %}
+		</tr>
+		<tr id="{{ case.title }}">
+			{% if case.has_embedded_link %}
+			{% else %}
+				<td width="799"></td>
+			{% endif %}
+		</tr>
+	{% empty %}
+		<p class='text'>No cases available.</p>
+	{% endfor %}
+</table>
+
+{% endblock %}
+

@@ -9,6 +9,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+ADMIN_PANEL_URL = 'admin-panel'
+ADMIN_LOGIN_URL = 'admin-login'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.

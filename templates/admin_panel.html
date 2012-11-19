@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel | Crimson Beacon{% endblock %}
+
+{% block content %}
+
+<p class="title">Crimson Beacon | Content Manager</p>
+
+<table cellpadding='0' cellspacing='0' border='0'>
+	<tr>
+		<td width"250">
+			<p class="subtitle">Articles</p>
+			<p class="text"><a href="{% url article_create %}">Create</a></p>
+			<p class="text"><a href="{% url article_list %}">Update / Delete</a></p>
+			<p class="text"><a href="{% url article_list %}">View Listing</a></p>
+		</td>
+		<td width="250">
+			<p class="subtitle">Case Studies</p>
+			<p class="text"><a href="{% url case_create %}">Create</a></p>
+			<p class="text"><a href="{% url case_list %}">Update / Delete</a></p>
+			<p class="text"><a href="{% url case_list %}">View Listing</a></p>
+		</td>
+		<td width="250">
+			<p class="subtitle">Survey Reports</p>
+			<p class="text"><a href="{% url survey_create %}">Create</a></p>
+			<p class="text"><a href="{% url survey_list %}">Update / Delete</a></p>
+			<p class="text"><a href="{% url survey_list %}">View Listing</a></p>
+		</td>
+		<td width="250">
+			<p class="subtitle">Flatpages</p>
+			<p class="text"><a href="{% url about %}">About</a></p>
+			<p class="text"><a href="{% url contact %}">Contact</a></p>
+			<p class="text"><a href="{% url contributor %}">Contributor</a></p>
+		</td>
+	</tr>
+</table>
+
+{% endblock %}
+
+{% block sidebar %}
+&nbsp;
+{% endblock %}
+
